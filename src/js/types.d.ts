@@ -1,0 +1,4 @@
+interface Math {
+	TAU: number;
+}
+
