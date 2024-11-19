@@ -5,12 +5,12 @@ import {
 }                  from '../utils/math.ts';
 import { drawDot } from '../utils/canvas.ts';
 import Controller  from '../Controller.ts';
+import carImgSrc   from '/ambulance.png';
 
 const maxSpeed            = 3.7;
 const acceleration        = 0.17;
 const angularAcceleration = 0.03;
 const friction            = 0.05;
-const carImgSrc           = 'ambulance.png';
 const drawDots            = true;
 
 export default class Car {
