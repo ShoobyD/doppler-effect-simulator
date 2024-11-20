@@ -71,7 +71,7 @@ function animate(): void {
 function updateEntities(): void {
 	road.update();
 	ambulance.update();
-	soundWaves.forEach( soundWave => soundWave.update( ambulance ) );
+	soundWaves.forEach( soundWave => soundWave.update( ambulance.x, ambulance.y ) );
 	microphone.update( soundWaves );
 }
 

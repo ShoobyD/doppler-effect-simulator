@@ -1,4 +1,3 @@
-import Car        from './Car.ts';
 import Oscillator from '../Oscillator.ts';
 
 const soundSpeed = 10;
@@ -45,12 +44,12 @@ export default class SoundWave implements IRipple {
 		this.#oscillator = new Oscillator( duration );
 	}
 
-	update( car: Car ): void {
+	update( x: number, y: number ): void {
 		this.ripples.forEach( wave => wave.radius += soundSpeed );
 
 		// Add ripple if still playing
 		if ( Date.now() - this.createTime < this.duration * 1000 ) {
-			this.ripples.push( { x: car.x, y: car.y, radius: 0, heard: false } );
+			this.ripples.push( { x, y, radius: 0, heard: false } );
 		}
 	}
 
