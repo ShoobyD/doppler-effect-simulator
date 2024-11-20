@@ -1,28 +1,31 @@
 import { drawDot } from '../utils/canvas.ts';
 import { lerp }    from '../utils/math.ts';
 
-const roadLength    = 10 ** 5;
 const laneMarkWidth = 5;
 
 export default class Road {
 	x: number;
 	width: number;
+	length: number;
 	laneCount: number;
 	margin: number;
 
-	left: number   = 0;
-	right: number  = 0;
-	top: number    = -roadLength / 2;
-	bottom: number = roadLength / 2;
+	left: number;
+	right: number;
+	top: number;
+	bottom: number;
 
-	constructor( x: number, width: number, laneCount: number, margin: number ) {
+	constructor( x: number, width: number, length: number, laneCount: number, margin: number ) {
 		this.x         = x;
 		this.width     = width;
+		this.length    = length;
 		this.laneCount = laneCount;
 		this.margin    = margin;
 
-		this.left  = x - width / 2 + margin;
-		this.right = x + width / 2 - margin;
+		this.left   = x - width / 2 + margin;
+		this.right  = x + width / 2 - margin;
+		this.top    = -length / 2;
+		this.bottom = length / 2;
 	}
 
 	update(): void {
