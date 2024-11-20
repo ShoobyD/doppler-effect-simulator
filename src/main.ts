@@ -5,7 +5,9 @@ import Road       from './js/entities/Road.ts';
 import SoundWave  from './js/entities/SoundWave.ts';
 import Microphone from './js/entities/Microphone.ts';
 
+const carRatio      = 1.7;
 const carWidth      = 30;
+const carLength     = carRatio * carWidth;
 const carMargin     = 0.5 * carWidth;
 
 const laneWidth     = carWidth + 2 * carMargin;
@@ -29,7 +31,7 @@ updateCanvasSize();
 
 // Init. items
 const road       = new Road( roadCanvas.width / 2, roadWidth, roadLength, laneCount, carMargin );
-const car        = new Car( road.getLaneCenter( carLane ), 0, carWidth, 30 * 1.7 );
+const car        = new Car( road.getLaneCenter( carLane ), 0, carWidth, carLength );
 const microphone = new Microphone( road.getLaneCenter( carLane ), -400 );
 
 const soundWaves: SoundWave[] = [];
