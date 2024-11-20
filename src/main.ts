@@ -4,16 +4,16 @@ import Ambulance  from './js/entities/Ambulance.ts';
 import Road       from './js/entities/Road.ts';
 import Microphone from './js/entities/Microphone.ts';
 
-const carRatio      = 1.7;
-const carWidth      = 30;
-const carLength     = carRatio * carWidth;
-const carMargin     = 0.5 * carWidth;
+const carRatio  = 1.7;
+const carWidth  = 30;
+const carLength = carRatio * carWidth;
+const carMargin = 0.5 * carWidth;
 
-const laneWidth     = carWidth + 2 * carMargin;
-const laneCount     = 17;
-const roadWidth     = laneCount * laneWidth + 2 * carMargin;
-const roadLength    = 10 ** 5;
-const carLane       = Math.floor( ( laneCount - 1 ) / 2 );
+const laneWidth  = carWidth + 2 * carMargin;
+const laneCount  = 17;
+const roadWidth  = laneCount * laneWidth + 2 * carMargin;
+const roadLength = 10 ** 5;
+const carLane    = Math.floor( ( laneCount - 1 ) / 2 );
 
 // Init. canvas
 document.querySelector<HTMLDivElement>( '#app' )!.innerHTML = `
