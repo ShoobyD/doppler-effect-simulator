@@ -31,10 +31,6 @@ const road       = new Road( roadCanvas.width / 2, roadWidth, roadLength, laneCo
 const ambulance  = new Ambulance( road.getLaneCenter( carLane ), 0, carWidth, carLength );
 const microphone = new Microphone( road.getLaneCenter( carLane ), -400 );
 
-document.addEventListener( 'click', () => {
-	ambulance.siren.togglePlay();
-} );
-
 animate();
 
 
