@@ -1,6 +1,6 @@
 import './style.css';
 import './js/global.ts';
-import Car        from './js/entities/Car.ts';
+import Ambulance  from './js/entities/Ambulance.ts';
 import Road       from './js/entities/Road.ts';
 import SoundWave  from './js/entities/SoundWave.ts';
 import Microphone from './js/entities/Microphone.ts';
@@ -31,13 +31,13 @@ updateCanvasSize();
 
 // Init. items
 const road       = new Road( roadCanvas.width / 2, roadWidth, roadLength, laneCount, carMargin );
-const car        = new Car( road.getLaneCenter( carLane ), 0, carWidth, carLength );
+const ambulance  = new Ambulance( road.getLaneCenter( carLane ), 0, carWidth, carLength );
 const microphone = new Microphone( road.getLaneCenter( carLane ), -400 );
 
 const soundWaves: SoundWave[] = [];
 setInterval( () => {
 	if ( sirenOn ) {
-		soundWaves.push( new SoundWave( car.x, car.y, soundWaves.length % 2? 'nee': 'naw', soundDuration ) );
+		soundWaves.push( new SoundWave( ambulance.x, ambulance.y, soundWaves.length % 2? 'nee': 'naw', soundDuration ) );
 	}
 }, soundDuration * 1000 );
 
@@ -51,7 +51,7 @@ animate();
 
 // Export
 Object.assign( window, {
-	car,
+	ambulance,
 	road,
 } );
 
@@ -70,18 +70,18 @@ function animate(): void {
 
 function updateEntities(): void {
 	road.update();
-	car.update();
-	soundWaves.forEach( soundWave => soundWave.update( car ) );
+	ambulance.update();
+	soundWaves.forEach( soundWave => soundWave.update( ambulance ) );
 	microphone.update( soundWaves );
 }
 
 function drawEntities(): void {
 	roadCtx.save();
-	roadCtx.translate( 0, -car.y + roadCanvas.height * 0.8 );
+	roadCtx.translate( 0, -ambulance.y + roadCanvas.height * 0.8 );
 
 	road.draw( roadCtx );
 	microphone.draw( roadCtx );
-	car.draw( roadCtx );
+	ambulance.draw( roadCtx );
 	soundWaves.forEach( soundWave => soundWave.draw( roadCtx ) );
 
 	roadCtx.restore();

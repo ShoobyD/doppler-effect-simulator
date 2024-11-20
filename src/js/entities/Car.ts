@@ -5,7 +5,6 @@ import {
 }                  from '../utils/math.ts';
 import { drawDot } from '../utils/canvas.ts';
 import Controller  from '../Controller.ts';
-import carImgSrc   from '/ambulance.png';
 
 const maxSpeed            = 3.7;
 const acceleration        = 0.17;
@@ -25,7 +24,7 @@ export default class Car {
 
 	#controller: Controller;
 
-	constructor( x: number, y: number, width: number, length: number ) {
+	constructor( x: number, y: number, width: number, length: number, carImgSrc?: string ) {
 		this.x      = x;
 		this.y      = y;
 		this.width  = width;
