@@ -2,17 +2,6 @@ import Oscillator from '../Oscillator.ts';
 
 const soundSpeed = 10;
 
-type TNeeNaw = 'nee' | 'naw';
-
-const frequencies = {
-	'nee': 700,
-	'naw': 500,
-};
-const colors      = {
-	'nee': 'Red',
-	'naw': 'Blue',
-};
-
 export interface IRipple {
 	x: number;
 	y: number;
@@ -33,13 +22,13 @@ export default class SoundWave implements IRipple {
 	ripples: IRipple[] = [ this ];
 	heard: boolean     = false;
 
-	constructor( x: number, y: number, neeNaw: TNeeNaw, duration: number ) {
-		this.x        = x;
-		this.y        = y;
-		this.duration = duration;
+	constructor( x: number, y: number, frequency: number, color: string, duration: number ) {
+		this.x         = x;
+		this.y         = y;
+		this.duration  = duration;
+		this.frequency = frequency;
+		this.color     = color;
 
-		this.frequency   = frequencies[ neeNaw ];
-		this.color       = colors[ neeNaw ];
 		this.createTime  = Date.now();
 		this.#oscillator = new Oscillator( duration );
 	}

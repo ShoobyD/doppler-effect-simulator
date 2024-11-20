@@ -1,5 +1,14 @@
 import SoundWave from './SoundWave.ts';
 
+const frequencies = {
+	'nee': 700,
+	'naw': 500,
+};
+const colors      = {
+	'nee': 'Red',
+	'naw': 'Blue',
+};
+
 export default class Siren {
 	interval: number; // in ms
 	playing: boolean = false;
@@ -32,7 +41,10 @@ export default class Siren {
 	#addNewWave( x: number, y: number ) {
 		const timePassed = Date.now() - this.#lastWaveTime;
 		if ( this.playing && timePassed > this.interval ) {
-			this.soundWaves.push( new SoundWave( x, y, this.soundWaves.length % 2? 'nee': 'naw', this.interval / 1000 ) );
+			const neeNaw    = this.soundWaves.length % 2? 'nee': 'naw';
+			const frequency = frequencies[ neeNaw ];
+			const color     = colors[ neeNaw ];
+			this.soundWaves.push( new SoundWave( x, y, frequency, color, this.interval / 1000 ) );
 			this.#lastWaveTime = Date.now();
 		}
 	}
