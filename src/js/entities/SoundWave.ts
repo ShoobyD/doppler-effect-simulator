@@ -40,6 +40,8 @@ export default class SoundWave implements IRipple {
 		if ( Date.now() - this.createTime < this.duration ) {
 			this.ripples.push( { x, y, radius: 0, heard: false } );
 		}
+
+		window.eventBus.emit( 'soundUpdate', this );
 	}
 
 	play(): void {

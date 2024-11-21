@@ -56,7 +56,6 @@ function animate(): void {
 function updateEntities(): void {
 	road.update();
 	ambulance.update();
-	microphone.update( ambulance.siren.soundWaves );
 }
 
 function drawEntities(): void {

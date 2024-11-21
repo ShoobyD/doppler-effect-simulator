@@ -8,10 +8,12 @@ export default class Microphone {
 	constructor( x: number, y: number ) {
 		this.x = x;
 		this.y = y;
+
+		this.#setListener();
 	}
 
-	update( soundWaves: SoundWave[] ): void {
-		soundWaves.forEach( soundWave => {
+	#setListener() {
+		window.eventBus.on( 'soundUpdate', ( soundWave: SoundWave ) => {
 			soundWave.ripples.forEach( ( ripple, i, ripples ) => {
 				if ( ripple.heard )
 					return;
