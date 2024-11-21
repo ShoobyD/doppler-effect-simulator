@@ -1,7 +1,7 @@
 import './style.css';
 import './js/global.ts';
-import Ambulance  from './js/entities/Ambulance.ts';
 import Road       from './js/entities/Road.ts';
+import Ambulance  from './js/entities/Ambulance.ts';
 import Microphone from './js/entities/Microphone.ts';
 
 const carRatio  = 1.7;
