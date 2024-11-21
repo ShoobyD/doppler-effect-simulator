@@ -12,7 +12,6 @@ export default class Ambulance extends Car {
 	}
 
 	#addListeners() {
-		document.addEventListener( 'click', () => this.#siren.togglePlay() );
 		document.addEventListener( 'keypress', event => {
 			if ( event.key === ' ' )
 				this.#siren.togglePlay();
