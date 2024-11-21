@@ -18,15 +18,6 @@ export default class Siren {
 
 	constructor( interval = 1000 ) {
 		this.interval = interval;
-		this.#addListeners();
-	}
-
-	#addListeners() {
-		document.addEventListener( 'click', () => this.togglePlay() );
-		document.addEventListener( 'keypress', event => {
-			if ( event.key === ' ' )
-				this.togglePlay();
-		} );
 	}
 
 	togglePlay( play: boolean = !this.playing ): void {

@@ -8,6 +8,15 @@ export default class Ambulance extends Car {
 	constructor( x: number, y: number, width: number, length: number ) {
 		super( x, y, width, length, ambulanceImgSrc );
 		this.siren = new Siren();
+		this.#addListeners();
+	}
+
+	#addListeners() {
+		document.addEventListener( 'click', () => this.siren.togglePlay() );
+		document.addEventListener( 'keypress', event => {
+			if ( event.key === ' ' )
+				this.siren.togglePlay();
+		} );
 	}
 
 	update(): void {
