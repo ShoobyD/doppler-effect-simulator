@@ -54,17 +54,14 @@ function animate(): void {
 }
 
 function updateEntities(): void {
-	road.update();
-	ambulance.update();
+	[ road, ambulance ].forEach( entity => entity.update() );
 }
 
 function drawEntities(): void {
 	roadCtx.save();
 	roadCtx.translate( 0, -ambulance.y + roadCanvas.height * 0.8 );
 
-	road.draw( roadCtx );
-	microphone.draw( roadCtx );
-	ambulance.draw( roadCtx );
+	[ road, microphone, ambulance ].forEach( entity => entity.draw( roadCtx ) );
 
 	roadCtx.restore();
 }
