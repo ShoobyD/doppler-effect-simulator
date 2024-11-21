@@ -12,7 +12,7 @@ export interface IRipple {
 export default class SoundWave implements IRipple {
 	x: number;
 	y: number;
-	duration: number;
+	duration: number; // in ms
 	frequency: number;
 	color: string;
 	createTime: number;
@@ -30,14 +30,14 @@ export default class SoundWave implements IRipple {
 		this.color     = color;
 
 		this.createTime  = Date.now();
-		this.#oscillator = new Oscillator( duration );
+		this.#oscillator = new Oscillator( duration / 1000 );
 	}
 
 	update( x: number, y: number ): void {
 		this.ripples.forEach( wave => wave.radius += soundSpeed );
 
 		// Add ripple if still playing
-		if ( Date.now() - this.createTime < this.duration * 1000 ) {
+		if ( Date.now() - this.createTime < this.duration ) {
 			this.ripples.push( { x, y, radius: 0, heard: false } );
 		}
 	}

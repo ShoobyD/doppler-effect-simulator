@@ -3,7 +3,7 @@ const audioCtx = new AudioContext();
 const peakTime = 0.1;
 
 export default class Oscillator {
-	duration: number;
+	duration: number; // in seconds
 
 	#oscillatorNode = new OscillatorNode( audioCtx, { type: 'sawtooth' } );
 	#gainNode       = audioCtx.createGain();

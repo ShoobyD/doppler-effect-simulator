@@ -46,7 +46,7 @@ export default class Siren {
 			const neeNaw    = this.soundWaves.length % 2? 'nee': 'naw';
 			const frequency = frequencies[ neeNaw ];
 			const color     = colors[ neeNaw ];
-			this.soundWaves.push( new SoundWave( x, y, frequency, color, this.interval / 1000 ) );
+			this.soundWaves.push( new SoundWave( x, y, frequency, color, this.interval ) );
 			this.#lastWaveTime = Date.now();
 		}
 	}
