@@ -17,11 +17,11 @@ export default class Car {
 	y: number;
 	width: number;
 	length: number;
-	img?: HTMLImageElement;
 
 	direction: number = -Math.TAU / 4;
 	speed: number     = 0;
 
+	#img?: HTMLImageElement;
 	#controller: Controller;
 
 	constructor( x: number, y: number, width: number, length: number, carImgSrc?: string ) {
@@ -33,8 +33,8 @@ export default class Car {
 		this.#controller = new Controller();
 
 		if ( carImgSrc ) {
-			this.img     = new Image();
-			this.img.src = carImgSrc;
+			this.#img     = new Image();
+			this.#img.src = carImgSrc;
 		}
 	}
 
@@ -82,9 +82,9 @@ export default class Car {
 		ctx.translate( this.x, this.y );
 		ctx.rotate( this.direction );
 
-		if ( this.img ) {
+		if ( this.#img ) {
 			ctx.drawImage(
-				this.img,
+				this.#img,
 				-this.length / 2,
 				-this.width / 2,
 				this.length,

@@ -13,8 +13,8 @@ export default class Siren {
 	interval: number; // in ms
 	playing: boolean = false;
 
-	soundWaves: SoundWave[] = [];
-	#lastWaveTime: number   = 0;
+	#soundWaves: SoundWave[] = [];
+	#lastWaveTime: number    = 0;
 
 	constructor( interval = 1000 ) {
 		this.interval = interval;
@@ -25,7 +25,7 @@ export default class Siren {
 	}
 
 	update( x: number, y: number ): void {
-		this.soundWaves.forEach( soundWave => soundWave.update( x, y ) );
+		this.#soundWaves.forEach( soundWave => soundWave.update( x, y ) );
 		this.#addNewWave( x, y );
 	}
 
@@ -34,16 +34,16 @@ export default class Siren {
 			return;
 
 		if ( Date.now() - this.#lastWaveTime > this.interval ) {
-			const neeNaw    = this.soundWaves.length % 2? 'nee': 'naw';
+			const neeNaw    = this.#soundWaves.length % 2? 'nee': 'naw';
 			const frequency = frequencies[ neeNaw ];
 			const color     = colors[ neeNaw ];
-			this.soundWaves.push( new SoundWave( x, y, frequency, color, this.interval ) );
+			this.#soundWaves.push( new SoundWave( x, y, frequency, color, this.interval ) );
 			this.#lastWaveTime = Date.now();
 		}
 	}
 
 	draw( ctx: CanvasRenderingContext2D ): void {
-		this.soundWaves.forEach( soundWave => soundWave.draw( ctx ) );
+		this.#soundWaves.forEach( soundWave => soundWave.draw( ctx ) );
 	}
 }
 
