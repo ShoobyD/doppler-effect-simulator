@@ -29,16 +29,16 @@ export default class Siren {
 		} );
 	}
 
-	togglePlay( play: boolean = !this.playing ) {
+	togglePlay( play: boolean = !this.playing ): void {
 		this.playing = play;
 	}
 
-	update( x: number, y: number ) {
+	update( x: number, y: number ): void {
 		this.soundWaves.forEach( soundWave => soundWave.update( x, y ) );
 		this.#addNewWave( x, y );
 	}
 
-	#addNewWave( x: number, y: number ) {
+	#addNewWave( x: number, y: number ): void {
 		if ( !this.playing )
 			return;
 
@@ -51,7 +51,7 @@ export default class Siren {
 		}
 	}
 
-	draw( ctx: CanvasRenderingContext2D ) {
+	draw( ctx: CanvasRenderingContext2D ): void {
 		this.soundWaves.forEach( soundWave => soundWave.draw( ctx ) );
 	}
 }
