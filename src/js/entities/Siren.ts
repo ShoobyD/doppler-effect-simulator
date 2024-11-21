@@ -39,8 +39,10 @@ export default class Siren {
 	}
 
 	#addNewWave( x: number, y: number ) {
-		const timePassed = Date.now() - this.#lastWaveTime;
-		if ( this.playing && timePassed > this.interval ) {
+		if ( !this.playing )
+			return;
+
+		if ( Date.now() - this.#lastWaveTime > this.interval ) {
 			const neeNaw    = this.soundWaves.length % 2? 'nee': 'naw';
 			const frequency = frequencies[ neeNaw ];
 			const color     = colors[ neeNaw ];
