@@ -1,12 +1,16 @@
 import EventBus from './EventBus.ts';
 
-Math.TAU ??= 2 * Math.PI;
-
 declare global {
 	interface Window {
 		eventBus: EventBus;
 	}
+
+	interface Math {
+		TAU: number;
+	}
 }
+
+Math.TAU ??= 2 * Math.PI;
 
 window.eventBus = new EventBus();
 

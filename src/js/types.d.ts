@@ -1,4 +1,0 @@
-interface Math {
-	TAU: number;
-}
-
