@@ -26,7 +26,7 @@ export default class Microphone {
 						// Assuming [mic, rippleA, rippleB] are collinear for simplicity.
 						const prevDistance = distance( this, ripples[ i - 1 ] );
 						if ( currDistance - prevDistance ) {
-							soundWave.changeFrequency( prevDistance - currDistance );
+							soundWave.changeFrequency( ( prevDistance - currDistance ) / 42 );
 						}
 					}
 				}

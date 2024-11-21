@@ -1,4 +1,5 @@
-import Oscillator from '../Oscillator.ts';
+import Oscillator  from '../Oscillator.ts';
+import { doppler } from '../utils/math.ts';
 
 const soundSpeed = 10;
 
@@ -53,7 +54,7 @@ export default class SoundWave implements IRipple {
 	}
 
 	changeFrequency( rippleSpeed: number ): void {
-		const newFrequency = this.frequency * soundSpeed / ( soundSpeed - rippleSpeed / 50 );
+		const newFrequency = doppler( this.frequency, rippleSpeed, soundSpeed );
 		this.#oscillator.setFrequency( newFrequency );
 	}
 

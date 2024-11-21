@@ -26,3 +26,7 @@ export function polarToCartesian( radius: number, theta: number ): IPoint {
 	};
 }
 
+export function doppler( srcFrequency: number, srcSpeed: number, soundSpeed: number ): number {
+	return srcFrequency * soundSpeed / ( soundSpeed - srcSpeed );
+}
+
