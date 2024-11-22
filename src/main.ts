@@ -34,8 +34,14 @@ animate();
 
 // Export
 Object.assign( window, {
-	ambulance,
 	road,
+	ambulance,
+	microphone,
+} );
+console.log( {
+	road,
+	ambulance,
+	microphone,
 } );
 
 
