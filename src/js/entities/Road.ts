@@ -35,7 +35,7 @@ export default class Road {
 	}
 
 	getLaneCenter( laneIndex: number ): number {
-		const laneWidth    = this.width / this.laneCount;
+		const laneWidth    = ( this.width - 2 * this.margin ) / this.laneCount;
 		const markPosition = lerp( this.left, this.right, laneIndex / this.laneCount );
 		return markPosition + laneWidth / 2;
 	}
