@@ -26,6 +26,11 @@ export default class Road {
 	update(): void {
 	}
 
+	setLaneCount( laneCount: number ): void {
+		this.laneCount = laneCount;
+		this.updateSize();
+	}
+
 	updateSize(): void {
 		this.width  = this.laneCount * this.laneWidth + 2 * this.margin;
 		this.left   = this.margin;

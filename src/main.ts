@@ -61,6 +61,16 @@ console.log( {
 
 function setControls( controlsElement: HTMLDivElement ): void {
 	[
+		{
+			name        : 'lanes',
+			handler     : ( value: number ) => {
+				road.setLaneCount( value );
+				const middleLane = Math.floor( ( value - 1 ) / 2 );
+				const laneCenter = road.getLaneCenter( middleLane );
+				ambulance.x      = microphone.x = laneCenter;
+			},
+			defaultValue: laneCount,
+		},
 	].forEach( ( { name, handler, defaultValue } ) => {
 		const controlElement = controlsElement.querySelector( `#${ name }` )!;
 		const inputElement   = controlElement.querySelector( 'input' )!;
