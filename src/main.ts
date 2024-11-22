@@ -9,9 +9,8 @@ const carWidth  = 30;
 const carLength = carRatio * carWidth;
 const carMargin = 0.5 * carWidth;
 
-const laneWidth  = carWidth + 2 * carMargin;
 const laneCount  = 17;
-const roadWidth  = laneCount * laneWidth + 2 * carMargin;
+const laneWidth  = carWidth + 2 * carMargin;
 const roadLength = 10 ** 5;
 const carLane    = Math.floor( ( laneCount - 1 ) / 2 );
 
@@ -24,10 +23,9 @@ document.querySelector<HTMLDivElement>( '#app' )!.innerHTML = `
 
 const roadCanvas = document.querySelector<HTMLCanvasElement>( '#road-canvas' )!;
 const roadCtx    = roadCanvas.getContext( '2d' )!;
-updateCanvasSize();
 
 // Init. items
-const road       = new Road( roadCanvas.width / 2, roadWidth, roadLength, laneCount, carMargin );
+const road       = new Road( laneCount, laneWidth, roadLength, carMargin );
 const ambulance  = new Ambulance( road.getLaneCenter( carLane ), 0, carWidth, carLength );
 const microphone = new Microphone( road.getLaneCenter( carLane ), -400 );
 
@@ -42,7 +40,7 @@ Object.assign( window, {
 
 
 function updateCanvasSize(): void {
-	roadCanvas.width  = roadWidth;
+	roadCanvas.width  = road.width;
 	roadCanvas.height = window.innerHeight;
 }
 

@@ -4,31 +4,34 @@ import { lerp }    from '../utils/math.ts';
 const laneMarkWidth = 5;
 
 export default class Road {
-	x: number;
-	width: number;
-	length: number;
 	laneCount: number;
+	laneWidth: number;
+	length: number;
 	margin: number;
 
-	left: number;
-	right: number;
-	top: number;
-	bottom: number;
+	width: number  = 0;
+	left: number   = 0;
+	right: number  = 0;
+	top: number    = 0;
+	bottom: number = 0;
 
-	constructor( x: number, width: number, length: number, laneCount: number, margin: number ) {
-		this.x         = x;
-		this.width     = width;
-		this.length    = length;
+	constructor( laneCount: number, laneWidth: number, length: number, margin: number ) {
 		this.laneCount = laneCount;
+		this.laneWidth = laneWidth;
+		this.length    = length;
 		this.margin    = margin;
-
-		this.left   = x - width / 2 + margin;
-		this.right  = x + width / 2 - margin;
-		this.top    = -length / 2;
-		this.bottom = length / 2;
+		this.updateSize();
 	}
 
 	update(): void {
+	}
+
+	updateSize(): void {
+		this.width  = this.laneCount * this.laneWidth + 2 * this.margin;
+		this.left   = this.margin;
+		this.right  = this.width - this.margin;
+		this.top    = -this.length / 2;
+		this.bottom = this.length / 2;
 	}
 
 	getLaneCenter( laneIndex: number ): number {
