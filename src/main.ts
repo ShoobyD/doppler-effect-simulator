@@ -16,10 +16,25 @@ const middleLane = Math.floor( ( laneCount - 1 ) / 2 );
 
 // Init. canvas
 document.querySelector<HTMLDivElement>( '#app' )!.innerHTML = `
+	<div id="controls-panel">
+		<h2>Controls</h2>
+		<label id="lanes">
+			<div class="label"># of lanes (<output></output>)</div>
+			<input type="range" name="lanes" min="1" max="20">
+		</label>
+		<label id="speed">
+			<div class="label">Max-Speed (<output></output>)</div>
+			<input type="range" name="speed" min="3" max="10" step="0.1">
+		</label>
+	</div>
 	<div id="road">
 		<canvas id="road-canvas"></canvas>
 	</div>
 `;
+
+
+const controlsElement = document.querySelector<HTMLDivElement>( '#controls-panel' )!;
+setControls( controlsElement );
 
 const roadCanvas = document.querySelector<HTMLCanvasElement>( '#road-canvas' )!;
 const roadCtx    = roadCanvas.getContext( '2d' )!;
@@ -44,6 +59,22 @@ console.log( {
 	microphone,
 } );
 
+function setControls( controlsElement: HTMLDivElement ): void {
+	[
+	].forEach( ( { name, handler, defaultValue } ) => {
+		const controlElement = controlsElement.querySelector( `#${ name }` )!;
+		const inputElement   = controlElement.querySelector( 'input' )!;
+		const outputElement  = controlElement.querySelector( 'output' )!;
+
+		inputElement.addEventListener( 'input', () => {
+			outputElement.value = inputElement.value;
+			handler( +inputElement.value );
+		} );
+
+		inputElement.value = defaultValue.toString();
+		setTimeout( () => inputElement.dispatchEvent( new Event( 'input' ) ) );
+	} );
+}
 
 function updateCanvasSize(): void {
 	roadCanvas.width  = road.width;
