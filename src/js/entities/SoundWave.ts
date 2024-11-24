@@ -1,7 +1,10 @@
 import Oscillator  from '../Oscillator.ts';
 import { doppler } from '../utils/math.ts';
 
-const soundSpeed = 10;
+const soundSpeed    = 10;
+const maxWaveRadius = 5000;
+const epsilon       = 0.02;
+const expFactor     = -maxWaveRadius / Math.log( epsilon );
 
 export interface IRipple {
 	x: number;
@@ -36,6 +39,10 @@ export default class SoundWave implements IRipple {
 		this.#oscillator = new Oscillator( duration / 1000 );
 	}
 
+	get loudness(): number {
+		return Math.exp( -this.radius / expFactor );
+	}
+
 	update( x: number, y: number ): void {
 		this.ripples.forEach( wave => wave.radius += soundSpeed );
 
@@ -53,8 +60,7 @@ export default class SoundWave implements IRipple {
 	}
 
 	play(): void {
-		const loudness = Math.exp( -this.radius / 500 );
-		this.#oscillator.setLoudness( loudness );
+		this.#oscillator.setLoudness( this.loudness );
 		this.#oscillator.setFrequency( this.frequency );
 		this.#oscillator.play();
 	}
@@ -65,6 +71,10 @@ export default class SoundWave implements IRipple {
 	}
 
 	draw( ctx: CanvasRenderingContext2D ): void {
+		if ( this.radius > maxWaveRadius )
+			return;
+
+		ctx.globalAlpha = this.loudness;
 		ctx.strokeStyle = this.color;
 		this.ripples.forEach( ( { x, y, radius } ) => {
 			ctx.beginPath();
