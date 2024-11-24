@@ -1,8 +1,9 @@
 import './style.css';
 import './js/global.ts';
-import Road       from './js/entities/Road.ts';
-import Ambulance  from './js/entities/Ambulance.ts';
-import Microphone from './js/entities/Microphone.ts';
+import Road        from './js/entities/Road.ts';
+import Ambulance   from './js/entities/Ambulance.ts';
+import Microphone  from './js/entities/Microphone.ts';
+import ControlsBar from './js/ControlsBar.ts';
 
 const carRatio  = 1.7;
 const carWidth  = 30;
@@ -18,14 +19,6 @@ const middleLane = Math.floor( ( laneCount - 1 ) / 2 );
 document.querySelector<HTMLDivElement>( '#app' )!.innerHTML = `
 	<div id="controls-panel">
 		<h2>Controls</h2>
-		<label id="lanes">
-			<div class="label"># of lanes (<output></output>)</div>
-			<input type="range" name="lanes" min="1" max="20">
-		</label>
-		<label id="speed">
-			<div class="label">Max-Speed (<output></output>)</div>
-			<input type="range" name="speed" min="3" max="12" step="0.1">
-		</label>
 	</div>
 	<div id="road">
 		<canvas id="road-canvas"></canvas>
@@ -41,7 +34,31 @@ const ambulance  = new Ambulance( road.getLaneCenter( middleLane ), 0, carWidth,
 const microphone = new Microphone( road.getLaneCenter( middleLane ), -400 );
 
 const controlsElement = document.querySelector<HTMLDivElement>( '#controls-panel' )!;
-setControls( controlsElement );
+new ControlsBar( controlsElement, [
+	{
+		name        : 'lanes',
+		label       : '# of lanes',
+		handler     : ( value: number ) => {
+			road.setLaneCount( value );
+			const middleLane = Math.floor( ( value - 1 ) / 2 );
+			const laneCenter = road.getLaneCenter( middleLane );
+			ambulance.x      = microphone.x = laneCenter;
+		},
+		defaultValue: laneCount,
+		max         : 20,
+	},
+	{
+		name        : 'speed',
+		label       : 'Max-speed',
+		handler     : ( value: number ) => {
+			ambulance.setMaxSpeed( value );
+		},
+		defaultValue: ambulance.maxSpeed,
+		max         : 12,
+		step        : 0.1,
+	},
+] );
+
 animate();
 
 
@@ -57,39 +74,6 @@ console.log( {
 	microphone,
 } );
 
-function setControls( controlsElement: HTMLDivElement ): void {
-	[
-		{
-			name        : 'lanes',
-			handler     : ( value: number ) => {
-				road.setLaneCount( value );
-				const middleLane = Math.floor( ( value - 1 ) / 2 );
-				const laneCenter = road.getLaneCenter( middleLane );
-				ambulance.x      = microphone.x = laneCenter;
-			},
-			defaultValue: laneCount,
-		},
-		{
-			name        : 'speed',
-			handler     : ( value: number ) => {
-				ambulance.setMaxSpeed( value );
-			},
-			defaultValue: ambulance.maxSpeed,
-		},
-	].forEach( ( { name, handler, defaultValue } ) => {
-		const controlElement = controlsElement.querySelector( `#${ name }` )!;
-		const inputElement   = controlElement.querySelector( 'input' )!;
-		const outputElement  = controlElement.querySelector( 'output' )!;
-
-		inputElement.addEventListener( 'input', () => {
-			outputElement.value = inputElement.value;
-			handler( +inputElement.value );
-		} );
-
-		inputElement.value = defaultValue.toString();
-		setTimeout( () => inputElement.dispatchEvent( new Event( 'input' ) ) );
-	} );
-}
 
 function updateCanvasSize(): void {
 	roadCanvas.width  = road.width;
