@@ -6,7 +6,7 @@ import {
 import { drawDot } from '../utils/canvas.ts';
 import Controller  from '../Controller.ts';
 
-const maxSpeed            = 3.7;
+const defaultMaxSpeed     = 3.7;
 const acceleration        = 0.17;
 const angularAcceleration = 0.03;
 const friction            = 0.05;
@@ -20,6 +20,7 @@ export default class Car {
 
 	direction: number = -Math.TAU / 4;
 	speed: number     = 0;
+	maxSpeed: number  = defaultMaxSpeed;
 
 	#img?: HTMLImageElement;
 	#controller: Controller;
@@ -38,6 +39,10 @@ export default class Car {
 		}
 	}
 
+	setMaxSpeed( maxSpeed: number ): void {
+		this.maxSpeed = maxSpeed;
+	}
+
 	update(): void {
 		this.#updatetSpeed();
 		this.#updateDirection();
@@ -47,10 +52,10 @@ export default class Car {
 	#updatetSpeed(): void {
 		// Read controller
 		if ( this.#controller.up ) {
-			this.speed = clamp( this.speed + acceleration, -maxSpeed, maxSpeed );
+			this.speed = clamp( this.speed + acceleration, -this.maxSpeed, this.maxSpeed );
 		}
 		if ( this.#controller.down ) {
-			this.speed = clamp( this.speed - acceleration, -maxSpeed, maxSpeed );
+			this.speed = clamp( this.speed - acceleration, -this.maxSpeed, this.maxSpeed );
 		}
 
 		// Add friction

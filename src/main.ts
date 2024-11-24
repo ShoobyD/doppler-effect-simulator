@@ -24,17 +24,13 @@ document.querySelector<HTMLDivElement>( '#app' )!.innerHTML = `
 		</label>
 		<label id="speed">
 			<div class="label">Max-Speed (<output></output>)</div>
-			<input type="range" name="speed" min="3" max="10" step="0.1">
+			<input type="range" name="speed" min="3" max="12" step="0.1">
 		</label>
 	</div>
 	<div id="road">
 		<canvas id="road-canvas"></canvas>
 	</div>
 `;
-
-
-const controlsElement = document.querySelector<HTMLDivElement>( '#controls-panel' )!;
-setControls( controlsElement );
 
 const roadCanvas = document.querySelector<HTMLCanvasElement>( '#road-canvas' )!;
 const roadCtx    = roadCanvas.getContext( '2d' )!;
@@ -44,6 +40,8 @@ const road       = new Road( laneCount, laneWidth, roadLength, carMargin );
 const ambulance  = new Ambulance( road.getLaneCenter( middleLane ), 0, carWidth, carLength );
 const microphone = new Microphone( road.getLaneCenter( middleLane ), -400 );
 
+const controlsElement = document.querySelector<HTMLDivElement>( '#controls-panel' )!;
+setControls( controlsElement );
 animate();
 
 
@@ -70,6 +68,13 @@ function setControls( controlsElement: HTMLDivElement ): void {
 				ambulance.x      = microphone.x = laneCenter;
 			},
 			defaultValue: laneCount,
+		},
+		{
+			name        : 'speed',
+			handler     : ( value: number ) => {
+				ambulance.setMaxSpeed( value );
+			},
+			defaultValue: ambulance.maxSpeed,
 		},
 	].forEach( ( { name, handler, defaultValue } ) => {
 		const controlElement = controlsElement.querySelector( `#${ name }` )!;
