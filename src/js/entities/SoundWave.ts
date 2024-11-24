@@ -23,6 +23,7 @@ export default class SoundWave implements IRipple {
 	radius: number     = 0;
 	ripples: IRipple[] = [ this ];
 	heard: boolean     = false;
+	finished: boolean  = false;
 
 	constructor( x: number, y: number, frequency: number, color: string, duration: number ) {
 		this.x         = x;
@@ -41,9 +42,14 @@ export default class SoundWave implements IRipple {
 		// Add ripple if still playing
 		if ( Date.now() - this.#createTime < this.duration ) {
 			this.ripples.push( { x, y, radius: 0, heard: false } );
+			this.finished = false;
+		} else if ( !this.finished ) {
+			this.finished = this.ripples.every( ripple => ripple.heard );
 		}
 
-		window.eventBus.emit( 'soundUpdate', this );
+		if ( !this.finished ) {
+			window.eventBus.emit( 'soundUpdate', this );
+		}
 	}
 
 	play(): void {
