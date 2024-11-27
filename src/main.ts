@@ -1,9 +1,9 @@
 import './style.css';
-import './js/global.ts';
-import Road         from './js/entities/Road.ts';
-import Ambulance    from './js/entities/Ambulance.ts';
-import Microphone   from './js/entities/Microphone.ts';
-import ControlPanel from './js/ControlPanel.ts';
+import './global.ts';
+import Road         from './entities/Road.ts';
+import Ambulance    from './entities/Ambulance.ts';
+import Microphone   from './entities/Microphone.ts';
+import ControlPanel from './util-classes/ControlPanel.ts';
 
 const carRatio  = 1.7;
 const carWidth  = 30;

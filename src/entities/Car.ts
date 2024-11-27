@@ -2,9 +2,9 @@ import {
 	changeAbsoluteValue,
 	clamp,
 	polarToCartesian,
-}                  from '../utils/math.ts';
-import { drawDot } from '../utils/canvas.ts';
-import Controller  from '../Controller.ts';
+}                  from '../helpers/math.ts';
+import { drawDot } from '../helpers/canvas.ts';
+import Controller  from '../util-classes/Controller.ts';
 
 const defaultMaxSpeed     = 3.7;
 const acceleration        = 0.17;

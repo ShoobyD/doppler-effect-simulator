@@ -1,5 +1,5 @@
-import { drawDot } from '../utils/canvas.ts';
-import { lerp }    from '../utils/math.ts';
+import { drawDot } from '../helpers/canvas.ts';
+import { lerp }    from '../helpers/math.ts';
 
 const laneMarkWidth = 5;
 

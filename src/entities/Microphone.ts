@@ -1,5 +1,5 @@
 import SoundWave    from './SoundWave.ts';
-import { distance } from '../utils/math.ts';
+import { distance } from '../helpers/math.ts';
 
 export default class Microphone {
 	x: number;

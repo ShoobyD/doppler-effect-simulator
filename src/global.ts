@@ -1,4 +1,4 @@
-import EventBus from './EventBus.ts';
+import EventBus from './util-classes/EventBus.ts';
 
 declare global {
 	interface Window {

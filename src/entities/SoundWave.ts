@@ -1,5 +1,5 @@
-import Oscillator  from '../Oscillator.ts';
-import { doppler } from '../utils/math.ts';
+import Oscillator  from '../util-classes/Oscillator.ts';
+import { doppler } from '../helpers/math.ts';
 
 const soundSpeed    = 10;
 const maxWaveRadius = 5000;

@@ -1,4 +1,4 @@
-import { createHtmlElement } from './utils/dom.ts';
+import { createHtmlElement } from '../helpers/dom.ts';
 
 interface IControlData {
 	name: string;
