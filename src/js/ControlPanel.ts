@@ -10,7 +10,7 @@ interface IControlData {
 	handler: ( value: number ) => void;
 }
 
-export default class ControlsBar {
+export default class ControlPanel {
 	wrapper: HTMLElement;
 	controlsData: IControlData[];
 

@@ -1,9 +1,9 @@
 import './style.css';
 import './js/global.ts';
-import Road        from './js/entities/Road.ts';
-import Ambulance   from './js/entities/Ambulance.ts';
-import Microphone  from './js/entities/Microphone.ts';
-import ControlsBar from './js/ControlsBar.ts';
+import Road         from './js/entities/Road.ts';
+import Ambulance    from './js/entities/Ambulance.ts';
+import Microphone   from './js/entities/Microphone.ts';
+import ControlPanel from './js/ControlPanel.ts';
 
 const carRatio  = 1.7;
 const carWidth  = 30;
@@ -34,7 +34,7 @@ const ambulance  = new Ambulance( road.getLaneCenter( middleLane ), 0, carWidth,
 const microphone = new Microphone( road.getLaneCenter( middleLane ), -400 );
 
 const controlsElement = document.querySelector<HTMLDivElement>( '#controls-panel' )!;
-new ControlsBar( controlsElement, [
+new ControlPanel( controlsElement, [
 	{
 		name        : 'lanes',
 		label       : '# of lanes',
