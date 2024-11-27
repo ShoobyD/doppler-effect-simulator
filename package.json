@@ -1,19 +1,25 @@
 {
-	"name"           : "self-driving-car",
+	"name"           : "doppler-effect-simulator",
 	"private"        : true,
 	"version"        : "0.0.0",
 	"type"           : "module",
 	"homepage"       : "https://shoobyd.github.io/doppler-effect-simulator/",
 	"scripts"        : {
 		"dev"      : "vite",
-		"build"    : "tsc && vite build",
+		"build"    : "vue-tsc -b && vite build",
 		"preview"  : "vite preview",
 		"predeploy": "npm run build",
 		"deploy"   : "gh-pages -d dist"
 	},
+	"dependencies"   : {
+		"vue": "^3.5.13"
+	},
 	"devDependencies": {
-		"gh-pages"  : "^6.2.0",
-		"typescript": "~5.6.2",
-		"vite"      : "^5.4.10"
+		"@vitejs/plugin-vue": "^5.2.1",
+		"gh-pages"          : "^6.2.0",
+		"typescript"        : "~5.6.2",
+		"vite"              : "^6.0.1",
+		"vue-tsc"           : "^2.1.10"
 	}
 }
+
