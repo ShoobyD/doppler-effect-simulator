@@ -45,7 +45,7 @@ new ControlsBar( controlsElement, [
 			ambulance.x      = microphone.x = laneCenter;
 		},
 		defaultValue: laneCount,
-		max         : 20,
+		maxValue    : 20,
 	},
 	{
 		name        : 'speed',
@@ -54,7 +54,7 @@ new ControlsBar( controlsElement, [
 			ambulance.setMaxSpeed( value );
 		},
 		defaultValue: ambulance.maxSpeed,
-		max         : 12,
+		maxValue    : 12,
 		step        : 0.1,
 	},
 ] );

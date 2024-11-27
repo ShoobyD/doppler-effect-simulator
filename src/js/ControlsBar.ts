@@ -3,11 +3,11 @@ import { createHtmlElement } from './utils/dom.ts';
 interface IControlData {
 	name: string;
 	label: string;
-	handler: ( value: number ) => void;
 	defaultValue: number;
-	min?: number;
-	max?: number;
+	minValue?: number;
+	maxValue?: number;
 	step?: number;
+	handler: ( value: number ) => void;
 }
 
 export default class ControlsBar {
@@ -25,7 +25,7 @@ export default class ControlsBar {
 		const controlElement = createHtmlElement( `
 			<label id="${ controlData.name }">
 				<div class="label">${ controlData.label } (<output></output>)</div>
-				<input type="range" min="${ controlData.min || 1 }" max="${ controlData.max || 10 }" step="${ controlData.step || 1 }">
+				<input type="range" min="${ controlData.minValue || 1 }" max="${ controlData.maxValue || 10 }" step="${ controlData.step || 1 }">
 			</label>
 		` );
 		this.wrapper.append( controlElement );
