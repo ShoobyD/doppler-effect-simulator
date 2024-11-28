@@ -10,6 +10,7 @@
 		computed,
 		ref,
 		watch,
+		watchEffect,
 	}                   from 'vue';
 	import Road         from './entities/Road.ts';
 	import Ambulance    from './entities/Ambulance.ts';
@@ -64,11 +65,11 @@
 			step : 0.1,
 		},
 	];
-	watch( laneCount, () => {
+	watchEffect( () => {
 		road.setLaneCount( laneCount.value );
 		ambulance.x = microphone.x = middleLaneCanter.value;
 	} );
-	watch( maxSpeed, () => {
+	watchEffect( () => {
 		ambulance.setMaxSpeed( maxSpeed.value );
 	} );
 
