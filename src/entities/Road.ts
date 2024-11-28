@@ -5,9 +5,9 @@ const laneMarkWidth = 5;
 
 export default class Road {
 	laneCount: number;
-	laneWidth: number;
-	length: number;
-	margin: number;
+	readonly laneWidth: number;
+	readonly length: number;
+	readonly margin: number;
 
 	width: number  = 0;
 	left: number   = 0;

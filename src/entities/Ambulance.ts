@@ -3,7 +3,7 @@ import Siren           from './Siren.ts';
 import ambulanceImgSrc from '/ambulance.png';
 
 export default class Ambulance extends Car {
-	#siren: Siren;
+	readonly #siren: Siren;
 
 	constructor( x: number, y: number, width: number, length: number ) {
 		super( x, y, width, length, ambulanceImgSrc );

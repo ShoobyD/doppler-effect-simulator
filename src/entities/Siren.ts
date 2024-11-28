@@ -10,11 +10,11 @@ const colors      = {
 };
 
 export default class Siren {
-	interval: number; // in ms
+	readonly interval: number; // in ms
 	playing: boolean = false;
 
-	#soundWaves: SoundWave[] = [];
-	#lastWaveTime: number    = 0;
+	readonly #soundWaves: SoundWave[] = [];
+	#lastWaveTime: number             = 0;
 
 	constructor( interval = 1000 ) {
 		this.interval = interval;

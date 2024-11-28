@@ -17,16 +17,17 @@ export default class SoundWave implements IRipple {
 	x: number;
 	y: number;
 	frequency: number;
-	color: string;
-	duration: number; // in ms
+	readonly color: string;
+	readonly duration: number; // in ms
 
-	#createTime: number;
-	#oscillator: Oscillator;
+	readonly #createTime: number;
+	readonly #oscillator: Oscillator;
 
-	radius: number     = 0;
-	ripples: IRipple[] = [ this ];
-	heard: boolean     = false;
-	finished: boolean  = false;
+	radius: number    = 0;
+	heard: boolean    = false;
+	finished: boolean = false;
+
+	readonly ripples: IRipple[] = [ this ];
 
 	constructor( x: number, y: number, frequency: number, color: string, duration: number ) {
 		this.x         = x;

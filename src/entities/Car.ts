@@ -15,15 +15,15 @@ const drawDots            = true;
 export default class Car {
 	x: number;
 	y: number;
-	width: number;
-	length: number;
+	readonly width: number;
+	readonly length: number;
 
 	direction: number = -Math.TAU / 4;
 	speed: number     = 0;
 	maxSpeed: number  = defaultMaxSpeed;
 
-	#img?: HTMLImageElement;
-	#controller: Controller;
+	readonly #img?: HTMLImageElement;
+	readonly #controller: Controller;
 
 	constructor( x: number, y: number, width: number, length: number, carImgSrc?: string ) {
 		this.x      = x;
