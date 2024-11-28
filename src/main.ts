@@ -1,9 +1,10 @@
 import './style.css';
 import './global.ts';
-import Road         from './entities/Road.ts';
-import Ambulance    from './entities/Ambulance.ts';
-import Microphone   from './entities/Microphone.ts';
-import ControlPanel from './util-classes/ControlPanel.ts';
+import Road          from './entities/Road.ts';
+import Ambulance     from './entities/Ambulance.ts';
+import Microphone    from './entities/Microphone.ts';
+import { expose }    from './helpers/general.ts';
+import ControlPanel  from './util-classes/ControlPanel.ts';
 
 const carRatio  = 1.7;
 const carWidth  = 30;
@@ -33,6 +34,12 @@ const road       = new Road( laneCount, laneWidth, roadLength, carMargin );
 const ambulance  = new Ambulance( road.getLaneCenter( middleLane ), 0, carWidth, carLength );
 const microphone = new Microphone( road.getLaneCenter( middleLane ), -400 );
 
+expose( {
+	road,
+	ambulance,
+	microphone,
+} );
+
 const controlsElement = document.querySelector<HTMLDivElement>( '#controls-panel' )!;
 new ControlPanel( controlsElement, [
 	{
@@ -60,19 +67,6 @@ new ControlPanel( controlsElement, [
 ] );
 
 animate();
-
-
-// Export
-Object.assign( window, {
-	road,
-	ambulance,
-	microphone,
-} );
-console.log( {
-	road,
-	ambulance,
-	microphone,
-} );
 
 
 function updateCanvasSize(): void {
