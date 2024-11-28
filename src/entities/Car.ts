@@ -44,12 +44,12 @@ export default class Car {
 	}
 
 	update(): void {
-		this.#updatetSpeed();
+		this.#updateSpeed();
 		this.#updateDirection();
 		this.#updatePosition();
 	}
 
-	#updatetSpeed(): void {
+	#updateSpeed(): void {
 		// Read controller
 		if ( this.#controller.up ) {
 			this.speed = clamp( this.speed + acceleration, -this.maxSpeed, this.maxSpeed );
