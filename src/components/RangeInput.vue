@@ -1,5 +1,5 @@
 <template>
-	<label id="${ controlData.name }">
+	<label :id="controlData.name">
 		<span class="label">{{ controlData.label }} ({{ controlData.model }})</span>
 		<input type="range" :min="controlData.min || 1" :max="controlData.max || 10"
 		       :step="controlData.step || 1" v-model.number="controlData.model.value" />
