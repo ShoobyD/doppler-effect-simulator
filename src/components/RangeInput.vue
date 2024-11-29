@@ -1,8 +1,8 @@
 <template>
-	<label :id="controlData.name">
-		<span class="label">{{ controlData.label }} ({{ controlData.model }})</span>
-		<input type="range" :min="controlData.min || 1" :max="controlData.max || 10"
-		       :step="controlData.step || 1" v-model.number="controlData.model.value" />
+	<label :id="name">
+		<span class="label">{{ label }} ({{ model }})</span>
+		<input type="range" :min="min" :max="max"
+		       :step="step" v-model.number="model" />
 	</label>
 </template>
 
@@ -18,7 +18,9 @@
 		step?: number;
 	}
 
-	defineProps<{ controlData: IControlData }>();
+	const { controlData } = defineProps<{ controlData: IControlData }>();
+
+	const { name, label, model, min = 1, max = 10, step = 1 } = controlData;
 </script>
 
 <style scoped lang="scss">
