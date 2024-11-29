@@ -1,8 +1,8 @@
 <template>
 	<label :id="name">
 		<span class="label">{{ label }} ({{ model }})</span>
-		<input type="range" :min="min" :max="max"
-		       :step="step" v-model.number="model" />
+		<input type="range" v-model.number="model"
+		       :min="min" :max="max" :step="step" />
 	</label>
 </template>
 
