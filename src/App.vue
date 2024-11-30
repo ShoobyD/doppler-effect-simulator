@@ -58,11 +58,12 @@
 			max  : 20,
 		},
 		{
-			name : 'speed',
-			label: 'Max-speed',
-			model: maxSpeed,
-			max  : 12,
-			step : 0.1,
+			name   : 'speed',
+			label  : 'Max-speed',
+			model  : maxSpeed,
+			max    : 12,
+			step   : 0.1,
+			crement: 10,
 		},
 	];
 	watchEffect( () => {
