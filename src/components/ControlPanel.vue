@@ -1,7 +1,8 @@
 <template>
 	<div id="controls-panel">
 		<h2>Controls</h2>
-		<RangeInput v-for="controlData in controlsData" :key="controlData.name" :controlData="controlData"></RangeInput>
+		<RangeInput class="range-input" v-for="controlData in controlsData" :key="controlData.name"
+		            :controlData="controlData"></RangeInput>
 	</div>
 </template>
 
@@ -12,10 +13,12 @@
 </script>
 
 <style scoped lang="scss">
+	$v-padding: 58px;
+
 	#controls-panel {
 		position:      absolute;
 		top:           42px;
-		padding:       54px 32px;
+		padding:       $v-padding 32px;
 		background:    #eef2fb;
 		border:        3px solid slateGray;
 		border-radius: 0 8px 8px 0;
@@ -28,5 +31,10 @@
 		line-height:         1;
 		color:               White;
 		-webkit-text-stroke: 1px #101053;
+		font-size:           xx-large;
+	}
+
+	.range-input {
+		margin-top: $v-padding;
 	}
 </style>
