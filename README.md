@@ -7,7 +7,7 @@ A web simulator of the Doppler Effect, inspired by [Radu Mariescu-Istodor]()'s w
 
 [@Radu](https://www.youtube.com/@Radu)'s original YouTube video:<br>
 <div align="center">
-	<a href="https://www.youtube.com/watch?v=5vI4m9qs9IY">
+	<a href="https://www.youtube.com/watch?v=5vI4m9qs9IY" target="_blank">
 		<img src="https://img.youtube.com/vi/5vI4m9qs9IY/0.jpg" alt="Doppler Effect with JavaScript | Web Audio API Tutorial" />
 	</a>
 	<br>
