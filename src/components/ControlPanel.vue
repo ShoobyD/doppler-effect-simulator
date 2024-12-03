@@ -3,6 +3,9 @@
 		<h2>Controls</h2>
 		<RangeInput class="range-input" v-for="controlData in controlsData" :key="controlData.name"
 		            :controlData="controlData"></RangeInput>
+		<div class="info">
+			<a href="https://github.com/ShoobyD/doppler-effect-simulator">View code on GitHub</a>
+		</div>
 	</div>
 </template>
 
@@ -36,5 +39,12 @@
 
 	.range-input {
 		margin-top: $v-padding;
+	}
+
+	.info {
+		text-align: center;
+		margin-top: $v-padding;
+		font-size:  small;
+		font-style: italic;
 	}
 </style>
