@@ -13,3 +13,9 @@ A web simulator of the Doppler Effect, inspired by [Radu Mariescu-Istodor]()'s w
 	<b><i>Doppler Effect with JavaScript | Web Audio API Tutorial</i></b>
 </p>
 
+
+## Improvemnts
+- Actual pitch change from the Doppler effect
+- Organizing the code
+- A control-panel to play with different parameters
+
