@@ -25,7 +25,7 @@
 
 	const laneWidth        = carWidth + 2 * carMargin;
 	const roadLength       = 10 ** 5;
-	const laneCount        = ref( 17 );
+	const laneCount        = ref( 5 );
 	const maxSpeed         = ref( 3.7 );
 	const middleLane       = computed( () => Math.floor( ( laneCount.value - 1 ) / 2 ) );
 	const middleLaneCanter = computed( () => road.getLaneCenter( middleLane.value ) );
