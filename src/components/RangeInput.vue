@@ -1,3 +1,4 @@
+<!-- Original controller by Javier:  https://codepen.io/JavRok/pen/pgJagr -->
 <template>
 	<div class="range-wrapper" :id="name">
 		<div class="label">{{ label }} <span class="current-value">{{ model }}</span></div>
