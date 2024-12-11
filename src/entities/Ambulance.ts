@@ -1,6 +1,6 @@
 import Car             from './Car.ts';
 import Siren           from './Siren.ts';
-import ambulanceImgSrc from '/ambulance.png';
+import ambulanceImgSrc from '/assets/ambulance.png';
 
 export default class Ambulance extends Car {
 	readonly #siren: Siren;
