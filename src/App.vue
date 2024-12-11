@@ -109,8 +109,10 @@
 		text-align: center;
 
 		&-canvas {
-			background:          url('/assets/grass.png');
-			background-position: 0 v-bind('patternPosition');
+			background: {
+				image:    url('/assets/grass.png');
+				position: 0 v-bind('patternPosition');
+			}
 		}
 	}
 </style>
