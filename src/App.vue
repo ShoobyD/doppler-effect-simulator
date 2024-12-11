@@ -1,5 +1,5 @@
 <template>
-	<ControlPanel :controlsData="controlsData"></ControlPanel>
+	<ControlPanel :controlsData="controlsData" @keydown.prevent></ControlPanel>
 	<div id="road">
 		<canvas id="road-canvas" ref="roadCanvasRef"></canvas>
 	</div>
