@@ -4,3 +4,12 @@ export function createHtmlElement( htmlString: string = '' ): HTMLElement {
 	return templateElement.content.firstChild as HTMLElement;
 }
 
+export function asyncLoadImage( imageSrc: string ): Promise<HTMLImageElement> {
+	return new Promise( ( resolve, reject ) => {
+		const image = new Image();
+		image.addEventListener( 'load', () => resolve( image ) );
+		image.addEventListener( 'error', () => reject( null ) );
+		image.src = imageSrc;
+	} );
+}
+
