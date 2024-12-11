@@ -76,7 +76,7 @@
 
 
 	function updateCanvasSize(): void {
-		roadCanvasRef.value!.width  = road.width;
+		roadCanvasRef.value!.width  = window.innerWidth;
 		roadCanvasRef.value!.height = window.innerHeight;
 	}
 
@@ -93,7 +93,7 @@
 
 	function drawEntities(): void {
 		roadCtx.value!.save();
-		roadCtx.value!.translate( 0, -ambulance.y + roadCanvasRef.value!.height * 0.8 );
+		roadCtx.value!.translate( roadCanvasRef.value!.width / 2 - road.width / 2, -ambulance.y + roadCanvasRef.value!.height * 0.8 );
 
 		[ road, microphone, ambulance ].forEach( entity => entity.draw( roadCtx.value! ) );
 
@@ -104,10 +104,6 @@
 <style scoped lang="scss">
 	#road {
 		text-align: center;
-
-		&-canvas {
-			background: #b0cce1;
-		}
 	}
 </style>
 

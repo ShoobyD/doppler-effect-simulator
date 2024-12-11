@@ -52,6 +52,9 @@ export default class Road {
 	draw( ctx: CanvasRenderingContext2D ): void {
 		ctx.save();
 
+		ctx.fillStyle = '#b0cce1';
+		ctx.fillRect( this.left - this.margin, this.top, this.width, this.length );
+
 		ctx.lineWidth   = laneMarkWidth;
 		ctx.strokeStyle = 'White';
 
