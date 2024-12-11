@@ -1,5 +1,5 @@
 <template>
-	<ControlPanel :controlsData="controlsData" @keydown.prevent></ControlPanel>
+	<ControlPanel id="control-panel" :controlsData="controlsData" @keydown.prevent></ControlPanel>
 	<div id="road">
 		<canvas id="road-canvas" ref="roadCanvasRef"></canvas>
 	</div>
@@ -105,6 +105,11 @@
 </script>
 
 <style scoped lang="scss">
+	#control-panel {
+		position: absolute;
+		top:      42px;
+	}
+
 	#road {
 		text-align: center;
 

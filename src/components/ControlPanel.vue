@@ -1,5 +1,5 @@
 <template>
-	<div id="controls-panel">
+	<div class="control-panel">
 		<h2>Controls</h2>
 		<RangeInput class="range-input" v-for="controlData in controlsData" :key="controlData.name"
 		            :controlData="controlData"></RangeInput>
@@ -18,9 +18,7 @@
 <style scoped lang="scss">
 	$v-padding: 58px;
 
-	#controls-panel {
-		position:      absolute;
-		top:           42px;
+	.control-panel {
 		padding:       $v-padding 32px;
 		background:    #eef2fb;
 		border:        3px solid slateGray;
