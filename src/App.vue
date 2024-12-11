@@ -105,12 +105,6 @@
 </script>
 
 <style scoped lang="scss">
-	#control-panel {
-		position: absolute;
-		top:      42px;
-		z-index:  1;
-	}
-
 	#road {
 		position:   fixed;
 		text-align: center;
