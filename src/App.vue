@@ -18,6 +18,8 @@
 	import ControlPanel from './components/ControlPanel.vue';
 	import { expose }   from './helpers/general.ts';
 
+	const followCar = window.isTouchDevice;
+
 	const carRatio  = 1.7;
 	const carWidth  = 30;
 	const carLength = carRatio * carWidth;
@@ -29,7 +31,7 @@
 	const maxSpeed         = ref( 3.7 );
 	const middleLane       = computed( () => Math.floor( ( laneCount.value - 1 ) / 2 ) );
 	const middleLaneCanter = computed( () => road.getLaneCenter( middleLane.value ) );
-	const patternPosition  = ref( '' );
+	const patternPosition  = ref( { x: '', y: '' } );
 
 	const roadCanvasRef = ref<HTMLCanvasElement>();
 	const roadCtx       = ref<CanvasRenderingContext2D>();
@@ -91,12 +93,19 @@
 	function updateEntities(): void {
 		[ road, ambulance ].forEach( entity => entity.update() );
 
-		patternPosition.value = -ambulance.y + 'px';
+		patternPosition.value = {
+			x: ( followCar? -ambulance.x: 0 ) + 'px',
+			y: -ambulance.y + 'px',
+		};
 	}
 
 	function drawEntities(): void {
 		roadCtx.value!.save();
-		roadCtx.value!.translate( roadCanvasRef.value!.width / 2 - road.width / 2, -ambulance.y + roadCanvasRef.value!.height * 0.8 );
+		const translate = {
+			x: roadCanvasRef.value!.width / 2 - ( followCar? ambulance.x: road.width / 2 ),
+			y: roadCanvasRef.value!.height * 0.8 - ambulance.y,
+		};
+		roadCtx.value!.translate( translate.x, translate.y );
 
 		[ road, microphone, ambulance ].forEach( entity => entity.draw( roadCtx.value! ) );
 
@@ -113,7 +122,7 @@
 			background: {
 				// Grass tile by WolfMountainGames: https://opengameart.org/content/32-x-32-grass-tile
 				image:    url('/assets/grass.png');
-				position: 0 v-bind('patternPosition');
+				position: v-bind('patternPosition.x') v-bind('patternPosition.y');
 			}
 		}
 	}

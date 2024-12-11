@@ -2,6 +2,7 @@ import EventBus from './util-classes/EventBus.ts';
 
 declare global {
 	interface Window {
+		isTouchDevice: boolean;
 		eventBus: EventBus;
 	}
 
@@ -11,6 +12,8 @@ declare global {
 }
 
 Math.TAU ??= 2 * Math.PI;
+
+window.isTouchDevice = ( 'ontouchstart' in window );
 
 window.eventBus = new EventBus();
 
