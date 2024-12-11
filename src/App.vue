@@ -111,6 +111,7 @@
 
 		&-canvas {
 			background: {
+				// Grass tile by WolfMountainGames: https://opengameart.org/content/32-x-32-grass-tile
 				image:    url('/assets/grass.png');
 				position: 0 v-bind('patternPosition');
 			}
