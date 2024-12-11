@@ -20,15 +20,22 @@
 </script>
 
 <style scoped lang="scss">
-	$v-padding: 58px;
-
 	#control-panel {
+		--vPadding:    58px;
+		--bgColor:     #eef2fb;
+		--bColor:      slateGray;
+		--bSize:       3px;
+		--bMain:       var(--bSize) solid var(--bColor);
+		--bSec:        calc(var(--bSize) - 1px) solid var(--bColor);
+		--bRadSize:    8px;
+		--bRad:        0 var(--bRadSize) var(--bRadSize) 0;
+
 		position:      absolute;
 		top:           42px;
-		padding:       $v-padding 32px;
-		background:    #eef2fb;
-		border:        3px solid slateGray;
-		border-radius: 0 8px 8px 0;
+		padding:       var(--vPadding) 32px;
+		background:    var(--bgColor);
+		border:        var(--bMain);
+		border-radius: var(--bRad);
 		border-left:   none;
 		transition:    700ms transform;
 		z-index:       1;
@@ -45,10 +52,10 @@
 		width:         32px;
 		height:        48px;
 		padding:       0;
-		border:        3px solid slateGray;
-		border-left:   2px solid slateGray;
-		border-radius: 0 8px 8px 0;
-		background:    #eef2fb;
+		border:        var(--bMain);
+		border-left:   var(--bSec);
+		border-radius: var(--bRad);
+		background:    var(--bgColor);
 		cursor:        pointer;
 	}
 
@@ -62,12 +69,12 @@
 	}
 
 	.range-input {
-		margin-top: $v-padding;
+		margin-top: var(--vPadding);
 	}
 
 	.info {
 		text-align: center;
-		margin-top: $v-padding;
+		margin-top: var(--vPadding);
 		font-size:  small;
 		font-style: italic;
 	}
