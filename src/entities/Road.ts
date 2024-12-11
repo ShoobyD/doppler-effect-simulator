@@ -39,9 +39,13 @@ export default class Road {
 		this.bottom = this.length / 2;
 	}
 
+	#getMarkPosition( index: number ): number {
+		return lerp( this.left, this.right, index / this.laneCount );
+	}
+
 	getLaneCenter( laneIndex: number ): number {
 		const laneWidth    = ( this.width - 2 * this.margin ) / this.laneCount;
-		const markPosition = lerp( this.left, this.right, laneIndex / this.laneCount );
+		const markPosition = this.#getMarkPosition( laneIndex );
 		return markPosition + laneWidth / 2;
 	}
 
@@ -55,7 +59,7 @@ export default class Road {
 			const isBorder = [ 0, this.laneCount ].includes( i );
 			ctx.setLineDash( isBorder? []: [ 30, 60 ] );
 
-			const markPosition = lerp( this.left, this.right, i / this.laneCount );
+			const markPosition = this.#getMarkPosition( i );
 			ctx.beginPath();
 			ctx.moveTo( markPosition, this.top );
 			ctx.lineTo( markPosition, this.bottom );
