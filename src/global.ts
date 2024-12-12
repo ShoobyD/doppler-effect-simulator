@@ -2,6 +2,7 @@ import EventBus from './util-classes/EventBus.ts';
 
 declare global {
 	interface Window {
+		DEBUG: boolean;
 		isTouchDevice: boolean;
 		eventBus: EventBus;
 	}

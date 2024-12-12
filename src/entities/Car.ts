@@ -10,7 +10,6 @@ const defaultMaxSpeed     = 3.7;
 const acceleration        = 0.17;
 const angularAcceleration = 0.03;
 const friction            = 0.05;
-const drawDots            = true;
 
 export default class Car {
 	x: number;
@@ -107,7 +106,7 @@ export default class Car {
 			ctx.fillRect( -this.length / 2 + this.length * ( 1 - frontBumperRatio ), -this.width / 2, frontBumperRatio * this.length, this.width );
 		}
 
-		if ( drawDots ) {
+		if ( window.DEBUG ) {
 			// Dots
 			drawDot( ctx, 0, 0 );
 			drawDot( ctx, -this.length / 2, -this.width / 2 );

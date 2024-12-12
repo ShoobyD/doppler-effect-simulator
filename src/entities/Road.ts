@@ -68,7 +68,9 @@ export default class Road {
 			ctx.lineTo( markPosition, this.bottom );
 			ctx.stroke();
 
-			drawDot( ctx, markPosition, 0 );
+			if ( window.DEBUG ) {
+				drawDot( ctx, markPosition, 0 );
+			}
 		}
 
 		ctx.restore();
