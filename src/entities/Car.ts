@@ -75,7 +75,10 @@ export default class Car {
 	}
 
 	#updatePosition(): void {
-		const { x: dx, y: dy } = polarToCartesian( this.speed, this.direction );
+		const { x: dx, y: dy } = polarToCartesian( {
+			radius: this.speed,
+			theta : this.direction,
+		} );
 		this.x += dx;
 		this.y += dy;
 	}

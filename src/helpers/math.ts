@@ -35,10 +35,10 @@ export function changeAbsoluteValue( value: number, diff: number ): number {
 	return value + Math.sign( value ) * diff;
 }
 
-export function polarToCartesian( radius: number, theta: number ): IPoint {
+export function polarToCartesian( p: IPolarPoint ): IPoint {
 	return {
-		x: radius * Math.cos( theta ),
-		y: radius * Math.sin( theta ),
+		x: p.radius * Math.cos( p.theta ),
+		y: p.radius * Math.sin( p.theta ),
 	};
 }
 
