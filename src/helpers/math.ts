@@ -31,6 +31,13 @@ export function scale( p: IPoint, factor: number ): IPoint {
 	};
 }
 
+export function offset( a: IPoint, b: IPoint ): IPoint {
+	return {
+		x: a.x - b.x,
+		y: a.y - b.y,
+	};
+}
+
 export function changeAbsoluteValue( value: number, diff: number ): number {
 	return value + Math.sign( value ) * diff;
 }
