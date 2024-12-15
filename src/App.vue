@@ -1,6 +1,6 @@
 <template>
 	<ControlPanel id="control-panel" :controlsData="controlsData" @keydown.prevent></ControlPanel>
-	<JoyStick id="joystick"></JoyStick>
+	<JoyStick id="joystick" v-if="isTouchDevice"></JoyStick>
 	<div id="road">
 		<canvas id="road-canvas" ref="roadCanvasRef"></canvas>
 	</div>
@@ -20,7 +20,8 @@
 	import JoyStick     from './components/JoyStick.vue';
 	import { expose }   from './helpers/general.ts';
 
-	const followCar = window.isTouchDevice;
+	const { isTouchDevice } = window;
+	const followCar         = isTouchDevice;
 
 	const carRatio  = 1.7;
 	const carWidth  = 30;

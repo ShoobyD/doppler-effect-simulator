@@ -1,5 +1,5 @@
 <template>
-	<div class="joystick" :class="{ active }" v-if="hasTouch">
+	<div class="joystick" :class="{ active }">
 		<div class="head" ref="joystickHeadRef"
 		     :style="headPosition"
 		     @touchstart="active = true"
@@ -23,8 +23,6 @@
 		norm,
 		scale,
 	} from '../helpers/math.ts';
-
-	const hasTouch = ( 'ontouchstart' in window );
 
 	const circleRadius = 40;
 	const headRadius   = circleRadius / 3;
