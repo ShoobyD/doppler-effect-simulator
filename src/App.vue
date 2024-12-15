@@ -1,5 +1,6 @@
 <template>
 	<ControlPanel id="control-panel" :controlsData="controlsData" @keydown.prevent></ControlPanel>
+	<JoyStick id="joystick"></JoyStick>
 	<div id="road">
 		<canvas id="road-canvas" ref="roadCanvasRef"></canvas>
 	</div>
@@ -16,6 +17,7 @@
 	import Ambulance    from './entities/Ambulance.ts';
 	import Microphone   from './entities/Microphone.ts';
 	import ControlPanel from './components/ControlPanel.vue';
+	import JoyStick     from './components/JoyStick.vue';
 	import { expose }   from './helpers/general.ts';
 
 	const followCar = window.isTouchDevice;
