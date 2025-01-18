@@ -50,6 +50,11 @@
 			left: '0px',
 			top : '0px',
 		};
+
+		window.eventBus.emit( 'joystickMove', {
+			radius: 0,
+			theta : 0,
+		} );
 	}
 
 	function touchmoveHandler( event: TouchEvent ) {
@@ -75,6 +80,11 @@
 			left: offsetClamped.x + 'px',
 			top : offsetClamped.y + 'px',
 		};
+
+		window.eventBus.emit( 'joystickMove', {
+			radius: radiusClamped / maxRadius,
+			theta,
+		} );
 	}
 
 	function getTouchCoords( event: TouchEvent ) {
