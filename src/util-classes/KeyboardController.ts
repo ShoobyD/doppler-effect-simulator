@@ -1,4 +1,4 @@
-export default class Controller {
+export default class KeyboardController {
 	up: boolean    = false;
 	down: boolean  = false;
 	left: boolean  = false;

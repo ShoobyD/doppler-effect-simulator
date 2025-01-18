@@ -2,9 +2,9 @@ import {
 	changeAbsoluteValue,
 	clamp,
 	polarToCartesian,
-}                  from '../helpers/math.ts';
-import { drawDot } from '../helpers/canvas.ts';
-import Controller  from '../util-classes/Controller.ts';
+}                         from '../helpers/math.ts';
+import { drawDot }        from '../helpers/canvas.ts';
+import KeyboardController from '../util-classes/KeyboardController.ts';
 
 const defaultMaxSpeed               = 3.7;
 const defaultMaxAcceleration        = 0.17;
@@ -27,7 +27,7 @@ export default class Car {
 	angularAcceleration: number = 0;
 
 	readonly #img?: HTMLImageElement;
-	readonly #controller: Controller;
+	readonly #keyboardController: KeyboardController;
 
 	constructor( x: number, y: number, width: number, length: number, carImgSrc?: string ) {
 		this.x      = x;
@@ -35,7 +35,7 @@ export default class Car {
 		this.width  = width;
 		this.length = length;
 
-		this.#controller = new Controller();
+		this.#keyboardController = new KeyboardController();
 
 		if ( carImgSrc ) {
 			this.#img     = new Image();
@@ -57,16 +57,16 @@ export default class Car {
 	#updateAcceleration(): void {
 		// Read controller
 		// Linear acceleration
-		if ( this.#controller.up ) {
+		if ( this.#keyboardController.up ) {
 			this.acceleration = this.maxAcceleration;
-		} else if ( this.#controller.down ) {
+		} else if ( this.#keyboardController.down ) {
 			this.acceleration = -this.maxAcceleration;
 		} else this.acceleration = 0;
 
 		// Angular acceleration
-		if ( this.#controller.left ) {
+		if ( this.#keyboardController.left ) {
 			this.angularAcceleration = -this.maxAngularAcceleration;
-		} else if ( this.#controller.right ) {
+		} else if ( this.#keyboardController.right ) {
 			this.angularAcceleration = this.maxAngularAcceleration;
 		} else this.angularAcceleration = 0;
 	}
