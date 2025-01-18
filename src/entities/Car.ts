@@ -6,10 +6,10 @@ import {
 import { drawDot } from '../helpers/canvas.ts';
 import Controller  from '../util-classes/Controller.ts';
 
-const defaultMaxSpeed     = 3.7;
-const acceleration        = 0.17;
-const angularAcceleration = 0.03;
-const friction            = 0.05;
+const defaultMaxSpeed               = 3.7;
+const defaultMaxAcceleration        = 0.17;
+const defaultMaxAngularAcceleration = 0.03;
+const friction                      = 0.05;
 
 export default class Car {
 	x: number;
@@ -17,9 +17,14 @@ export default class Car {
 	readonly width: number;
 	readonly length: number;
 
-	direction: number = -Math.TAU / 4;
-	speed: number     = 0;
-	maxSpeed: number  = defaultMaxSpeed;
+	maxSpeed: number       = defaultMaxSpeed;
+	maxAcceleration        = defaultMaxAcceleration;
+	maxAngularAcceleration = defaultMaxAngularAcceleration;
+
+	direction: number           = -Math.TAU / 4;
+	speed: number               = 0;
+	acceleration: number        = 0;
+	angularAcceleration: number = 0;
 
 	readonly #img?: HTMLImageElement;
 	readonly #controller: Controller;
@@ -43,19 +48,32 @@ export default class Car {
 	}
 
 	update(): void {
+		this.#updateAcceleration();
 		this.#updateSpeed();
 		this.#updateDirection();
 		this.#updatePosition();
 	}
 
-	#updateSpeed(): void {
+	#updateAcceleration(): void {
 		// Read controller
+		// Linear acceleration
 		if ( this.#controller.up ) {
-			this.speed = clamp( this.speed + acceleration, -this.maxSpeed, this.maxSpeed );
-		}
-		if ( this.#controller.down ) {
-			this.speed = clamp( this.speed - acceleration, -this.maxSpeed, this.maxSpeed );
-		}
+			this.acceleration = this.maxAcceleration;
+		} else if ( this.#controller.down ) {
+			this.acceleration = -this.maxAcceleration;
+		} else this.acceleration = 0;
+
+		// Angular acceleration
+		if ( this.#controller.left ) {
+			this.angularAcceleration = -this.maxAngularAcceleration;
+		} else if ( this.#controller.right ) {
+			this.angularAcceleration = this.maxAngularAcceleration;
+		} else this.angularAcceleration = 0;
+	}
+
+	#updateSpeed(): void {
+		// Accelerate
+		this.speed = clamp( this.speed + this.acceleration, -this.maxSpeed, this.maxSpeed );
 
 		// Add friction
 		this.speed = changeAbsoluteValue( this.speed, -friction );
@@ -65,13 +83,7 @@ export default class Car {
 	}
 
 	#updateDirection(): void {
-		// Read controller
-		if ( this.#controller.left ) {
-			this.direction -= Math.sign( this.speed ) * angularAcceleration;
-		}
-		if ( this.#controller.right ) {
-			this.direction += Math.sign( this.speed ) * angularAcceleration;
-		}
+		this.direction += Math.sign( this.speed ) * this.angularAcceleration;
 	}
 
 	#updatePosition(): void {
