@@ -12,13 +12,14 @@
 		ref,
 		watch,
 		watchEffect,
-	}                   from 'vue';
-	import Road         from './entities/Road.ts';
-	import Ambulance    from './entities/Ambulance.ts';
-	import Microphone   from './entities/Microphone.ts';
-	import ControlPanel from './components/ControlPanel.vue';
-	import JoyStick     from './components/JoyStick.vue';
-	import { expose }   from './helpers/general.ts';
+	}                      from 'vue';
+	import Road            from './entities/Road.ts';
+	import Ambulance       from './entities/Ambulance.ts';
+	import Microphone      from './entities/Microphone.ts';
+	import ControlPanel    from './components/ControlPanel.vue';
+	import JoyStick        from './components/JoyStick.vue';
+	import { expose }      from './helpers/general.ts';
+	import { IPolarPoint } from './helpers/math.ts';
 
 	const { isTouchDevice } = window;
 	const followCar         = isTouchDevice;
@@ -78,6 +79,12 @@
 	} );
 	watchEffect( () => {
 		ambulance.setMaxSpeed( maxSpeed.value );
+	} );
+
+
+	// Joystick Listener
+	window.eventBus.on( 'joystickMove', ( joystickMoveEvent: IPolarPoint ) => {
+		console.log( 'joystickMove', joystickMoveEvent );
 	} );
 
 
