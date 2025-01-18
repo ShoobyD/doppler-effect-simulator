@@ -65,8 +65,9 @@
 		// const offsetClamped   = scale( positionOffset, Math.min( 1, maxRadius / offsetRadius ) );
 
 		const { radius, theta } = cartesianToPolar( positionOffset );
+		const radiusClamped     = Math.min( radius, maxRadius );
 		const offsetClamped     = polarToCartesian( {
-			radius: Math.min( radius, maxRadius ),
+			radius: radiusClamped,
 			theta,
 		} );
 
