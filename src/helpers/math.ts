@@ -1,9 +1,9 @@
-interface IPoint {
+export interface IPoint {
 	x: number;
 	y: number;
 }
 
-interface IPolarPoint {
+export interface IPolarPoint {
 	radius: number;
 	theta: number;
 }
