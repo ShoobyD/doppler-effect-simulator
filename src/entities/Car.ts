@@ -1,6 +1,7 @@
 import {
 	changeAbsoluteValue,
 	clamp,
+	IPolarPoint,
 	polarToCartesian,
 }                         from '../helpers/math.ts';
 import { drawDot }        from '../helpers/canvas.ts';
@@ -29,6 +30,8 @@ export default class Car {
 	readonly #img?: HTMLImageElement;
 	readonly #keyboardController: KeyboardController;
 
+	joystickController: IPolarPoint = { radius: 0, theta: 0 };
+
 	constructor( x: number, y: number, width: number, length: number, carImgSrc?: string ) {
 		this.x      = x;
 		this.y      = y;
@@ -54,20 +57,29 @@ export default class Car {
 		this.#updatePosition();
 	}
 
-	#updateAcceleration(): void {
-		// Read controller
+	#updateAcceleration(): void { // I.E. Read controllers
+		const { up, down, left, right } = this.#keyboardController;
+		const { radius, theta }         = this.joystickController;
+
+		const isJoystickForward = Math.TAU / 2 < theta && theta < Math.TAU;
+		const joystickDirection = isJoystickForward? theta - 3 * Math.TAU / 4: Math.TAU / 4 - theta;
+
 		// Linear acceleration
-		if ( this.#keyboardController.up ) {
+		if ( up ) {
 			this.acceleration = this.maxAcceleration;
-		} else if ( this.#keyboardController.down ) {
+		} else if ( down ) {
 			this.acceleration = -this.maxAcceleration;
+		} else if ( radius ) {
+			this.acceleration = ( isJoystickForward? 1: -1 ) * radius * this.maxAcceleration;
 		} else this.acceleration = 0;
 
 		// Angular acceleration
-		if ( this.#keyboardController.left ) {
+		if ( left ) {
 			this.angularAcceleration = -this.maxAngularAcceleration;
-		} else if ( this.#keyboardController.right ) {
+		} else if ( right ) {
 			this.angularAcceleration = this.maxAngularAcceleration;
+		} else if ( radius ) {
+			this.angularAcceleration = joystickDirection / ( Math.TAU / 4 ) * this.maxAngularAcceleration;
 		} else this.angularAcceleration = 0;
 	}
 

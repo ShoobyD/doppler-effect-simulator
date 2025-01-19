@@ -84,7 +84,7 @@
 
 	// Joystick Listener
 	window.eventBus.on( 'joystickMove', ( joystickMoveEvent: IPolarPoint ) => {
-		console.log( 'joystickMove', joystickMoveEvent );
+		ambulance.joystickController = joystickMoveEvent;
 	} );
 
 
