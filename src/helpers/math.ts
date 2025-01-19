@@ -42,6 +42,10 @@ export function changeAbsoluteValue( value: number, diff: number ): number {
 	return value + Math.sign( value ) * diff;
 }
 
+export function wrapAngle( angle: number ): number {
+	return ( angle + Math.TAU ) % Math.TAU;
+}
+
 export function polarToCartesian( p: IPolarPoint ): IPoint {
 	return {
 		x: p.radius * Math.cos( p.theta ),
@@ -52,7 +56,7 @@ export function polarToCartesian( p: IPolarPoint ): IPoint {
 export function cartesianToPolar( p: IPoint ): IPolarPoint {
 	return {
 		radius: norm( p ),
-		theta : Math.atan2( p.y, p.x ),
+		theta : wrapAngle( Math.atan2( p.y, p.x ) ),
 	};
 }
 
