@@ -44,7 +44,7 @@
 	window.addEventListener( 'touchend', touchendHandler );
 	window.addEventListener( 'touchmove', touchmoveHandler );
 
-	function touchendHandler( event: TouchEvent ) {
+	function touchendHandler( _event: TouchEvent ) {
 		active.value       = false;
 		headPosition.value = {
 			left: '0px',
