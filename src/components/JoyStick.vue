@@ -20,8 +20,8 @@
 		cartesianToPolar,
 		polarToCartesian,
 		offset,
-		norm,
-		scale,
+		// norm,
+		// scale,
 	} from '../helpers/math.ts';
 
 	const circleRadius = 40;
