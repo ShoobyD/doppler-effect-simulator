@@ -20,3 +20,16 @@ A web simulator of the Doppler Effect, inspired by [Radu Mariescu-Istodor]()'s w
 - Organizing the code
 - A control-panel to play with different parameters
 
+
+___
+
+[@Radu](https://www.youtube.com/@Radu)'s review of this project:<br>
+<div align="center">
+	<a href="http://youtube.com/watch?v=I39TXSwPIBg" target="_blank">
+		<img src="https://img.youtube.com/vi/I39TXSwPIBg/0.jpg" alt="Doppler Effect with JavaScript | Web Audio API Tutorial" />
+	</a>
+	<br>
+	<b><i>Doppler Effect Simulator with Vue.js, TypeScript and the Web Audio API</i></b>
+</div>
+
+
